@@ -15,22 +15,15 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 #include <QtCore/qglobal.h>
-#if QT_VERSION >= 0x050000
 #include <QtGui/QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
-#else
-#endif
 
 int main(int argc, char *argv[])
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
-
 	QGuiApplication app(argc, argv);
 
 	QQmlApplicationEngine engine;
-	const QUrl url(QStringLiteral("qrc:/main.qml"));
+	const QUrl url(QStringLiteral("qrc:/qml/main.qml"));
 	QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
 					 &app, [url](QObject *obj, const QUrl &objUrl) {
 		if (!obj && url == objUrl)
