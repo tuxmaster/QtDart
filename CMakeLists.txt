@@ -25,13 +25,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt6 COMPONENTS Core Quick LinguistTools REQUIRED)
+message(STATUS "Using Qt ${Qt6Core_VERSION}")
 
 set(TS_FILES
     i18n/QtDart_de_DE.ts
 )
 
-set(PROJECT_SOURCES
+set (CPP_HEADER
+    src/Player.h
+)
+
+set(CPP_SOURCES
     src/main.cpp
+    src/Player.cpp
+)
+
+set(PROJECT_SOURCES
+    ${CPP_HEADER}
+    ${CPP_SOURCES}
     qml.qrc
     ${TS_FILES}
 )
