@@ -16,17 +16,17 @@
 */
 #include "Player.h"
 
-Player::Player()
+Player::Player(QObject *parent) : QObject(parent)
 {
 	this->setName(QString());
 	this->setId(QUuid());
 }
-Player::Player(const QString &name)
+Player::Player(const QString &name,QObject *parent) : QObject(parent)
 {
 	this->setName(name);
 	this->setId(QUuid());
 }
-Player::Player(const QString &name, const QUuid &id)
+Player::Player(const QString &name, const QUuid &id,QObject *parent) : QObject(parent)
 {
 	this->setName(name);
 	this->setId(id);

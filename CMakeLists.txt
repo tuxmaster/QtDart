@@ -31,10 +31,12 @@ message(STATUS "Using Qt ${Qt6Core_VERSION}")
 set(UI_PATH ui)
 set (CPP_HEADER
 	src/MainWindow.h
+	src/Leg.h
 	src/Params.h
 	src/Player.h
 )
 set(CPP_SOURCES
+    src/Leg.cpp
     src/main.cpp
     src/MainWindow.cpp
     src/Player.cpp

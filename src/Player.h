@@ -18,12 +18,13 @@
 #define PLAYER_H
 
 #include <QtCore>
-class Player
+class Player: public QObject
 {
+		Q_OBJECT
 	public:
-		explicit		Player();
-		explicit		Player(const QString &name);
-		explicit		Player(const QString &name, const QUuid &id);
+		explicit		Player(QObject *parent = nullptr);
+		explicit		Player(const QString &name,QObject *parent = nullptr);
+		explicit		Player(const QString &name, const QUuid &id,QObject *parent = nullptr);
 		void			setName(const QString &name);
 		void			setId(const QUuid &id);
 		const QString&	getName() const { return m_name;}
