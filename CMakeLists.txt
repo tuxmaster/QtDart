@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -28,18 +28,22 @@ find_package(Qt6 COMPONENTS Core Gui LinguistTools Widgets REQUIRED)
 message(STATUS "Using Qt ${Qt6Core_VERSION}")
 
 
+set(UI_PATH ui)
 set (CPP_HEADER
+	src/MainWindow.h
 	src/Params.h
 	src/Player.h
 )
 set(CPP_SOURCES
-	src/main.cpp
-	src/Player.cpp
+    src/main.cpp
+    src/MainWindow.cpp
+    src/Player.cpp
 )
 set(TS_FILES
     i18n/QtDart_de_DE.ts
 )
 set(UI_FILES
+    ${UI_PATH}/MainWindow.ui
 )
 
 set(PROJECT_SOURCES
@@ -49,6 +53,7 @@ set(PROJECT_SOURCES
     ${CPP_SOURCES}
     ${UI_FILES}
 )
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${UI_PATH})
 
 qt_add_executable(QtDart ${PROJECT_SOURCES} )
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})

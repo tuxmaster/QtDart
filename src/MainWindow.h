@@ -14,28 +14,19 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#include <QtCore>
-#include <QApplication>
-#include "Params.h"
-#include "MainWindow.h"
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-int main(int argc, char *argv[])
+#include "ui_MainWindow.h"
+
+class MainWindow : public QMainWindow, private Ui::MainWindow
 {
-	QApplication app(argc, argv);
-	app.setApplicationName(APP_NAME);
+		Q_OBJECT
+	public:
+		explicit MainWindow(QWidget *parent = nullptr);
 
-	QString translationPath=QLibraryInfo::path(QLibraryInfo::TranslationsPath);
-	QTranslator tr_qt;
-	QTranslator tr_app;
-	if (tr_qt.load(QString("qt_%1").arg(QLocale::system().name()),translationPath))
-	{
-			if(tr_app.load(QString("%1_%2").arg(app.applicationName(), QLocale::system().name()),translationPath))
-			{
-				app.installTranslator(&tr_qt);
-				app.installTranslator(&tr_app);
-			}
-	}
-	MainWindow mw;
-	mw.show();
-	return app.exec();
-}
+	protected:
+		void changeEvent(QEvent *e);
+};
+
+#endif // MAINWINDOW_H
