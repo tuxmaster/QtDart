@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(QtDart LANGUAGES CXX)
+project(QtDart VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -24,35 +24,34 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt6 COMPONENTS Core Quick LinguistTools REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui LinguistTools Widgets REQUIRED)
 message(STATUS "Using Qt ${Qt6Core_VERSION}")
 
+
+set (CPP_HEADER
+	src/Params.h
+	src/Player.h
+)
+set(CPP_SOURCES
+	src/main.cpp
+	src/Player.cpp
+)
 set(TS_FILES
     i18n/QtDart_de_DE.ts
 )
-
-set (CPP_HEADER
-    src/Player.h
-)
-
-set(CPP_SOURCES
-    src/main.cpp
-    src/Player.cpp
+set(UI_FILES
 )
 
 set(PROJECT_SOURCES
+    all.qrc
+    ${TS_FILES}
     ${CPP_HEADER}
     ${CPP_SOURCES}
-    qml.qrc
-    ${TS_FILES}
+    ${UI_FILES}
 )
 
-qt_add_executable(QtDart
-	${PROJECT_SOURCES}
-)
+qt_add_executable(QtDart ${PROJECT_SOURCES} )
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-
-target_compile_definitions(QtDart
-  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(QtDart
-  PRIVATE Qt::Core Qt::Quick)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE Qt::Core Qt::Gui Qt::Widgets
+)

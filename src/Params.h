@@ -14,25 +14,9 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PARAMS_H
+#define PARAMS_H
 
-#include <QtCore>
-class Player
-{
-	public:
-		explicit		Player();
-		explicit		Player(const QString &name);
-		explicit		Player(const QString &name, const QUuid &id);
-		void			setName(const QString &name);
-		void			setId(const QUuid &id);
-		const QString&	getName() const { return m_name;}
-		const QUuid&	getId() const { return m_id;}
+#define APP_NAME "QtDart"
 
-	private:
-		QUuid			m_id;
-		QString			m_name;
-
-};
-
-#endif // PLAYER_H
+#endif // PARAMS_H

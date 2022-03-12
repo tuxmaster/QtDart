@@ -14,22 +14,25 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#include <QtCore/qglobal.h>
-#include <QtGui/QGuiApplication>
-#include <QtQml/QQmlApplicationEngine>
+#include <QtCore>
+#include <QApplication>
+#include "Params.h"
 
 int main(int argc, char *argv[])
 {
-	QGuiApplication app(argc, argv);
+	QApplication app(argc, argv);
+	app.setApplicationName(APP_NAME);
 
-	QQmlApplicationEngine engine;
-	const QUrl url(QStringLiteral("qrc:/qml/main.qml"));
-	QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-					 &app, [url](QObject *obj, const QUrl &objUrl) {
-		if (!obj && url == objUrl)
-			QCoreApplication::exit(-1);
-	}, Qt::QueuedConnection);
-	engine.load(url);
-
+	QString translationPath=QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+	QTranslator tr_qt;
+	QTranslator tr_app;
+	if (tr_qt.load(QString("qt_%1").arg(QLocale::system().name()),translationPath))
+	{
+			if(tr_app.load(QString("%1_%2").arg(app.applicationName(), QLocale::system().name()),translationPath))
+			{
+				app.installTranslator(&tr_qt);
+				app.installTranslator(&tr_app);
+			}
+	}
 	return app.exec();
 }

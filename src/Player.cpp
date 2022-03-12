@@ -16,17 +16,17 @@
 */
 #include "Player.h"
 
-Player::Player(QObject *parent) : QObject(parent)
+Player::Player()
 {
 	this->setName(QString());
 	this->setId(QUuid());
 }
-Player::Player(const QString &name, QObject *parentr): QObject(parentr)
+Player::Player(const QString &name)
 {
 	this->setName(name);
 	this->setId(QUuid());
 }
-Player::Player(const QString &name, const QUuid &id, QObject *parent): QObject(parent)
+Player::Player(const QString &name, const QUuid &id)
 {
 	this->setName(name);
 	this->setId(id);
@@ -34,16 +34,10 @@ Player::Player(const QString &name, const QUuid &id, QObject *parent): QObject(p
 void Player::setName(const QString &name)
 {
 	if (name != m_name)
-	{
 		m_name=name;
-		Q_EMIT(nameChanged(m_name));
-	}
 }
 void Player::setId(const QUuid &id)
 {
 	if (id != m_id)
-	{
 		m_id=id;
-		Q_EMIT(idChanged(m_id));
-	}
 }
