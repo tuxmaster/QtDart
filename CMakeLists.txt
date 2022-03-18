@@ -13,6 +13,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(GNUInstallDirs)
 
+# Check for LLD or Gold linker
+message(VERBOSE ${CMAKE_CXX_COMPILER} )
+execute_process(COMMAND ${CMAKE_CXX_COMPILER} -fuse-ld=lld -Wl,--version ERROR_QUIET OUTPUT_VARIABLE LD_VERSION)
+if ("${LD_VERSION}" MATCHES "LLD")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=lld")
+    message(VERBOSE "Using LLD linker")
+else()
+    message(VERBOSE "LLD not found, trying gold linker")
+    execute_process(COMMAND ${CMAKE_CXX_COMPILER} -fuse-ld=gold -Wl,--version ERROR_QUIET OUTPUT_VARIABLE LD_VERSION)
+    if ("${LD_VERSION}" MATCHES "GNU gold")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
+	message(VERBOSE "Using Gold linker")
+    else()
+	 message(VERBOSE "Gold not found, using default linker")
+    endif()
+endif()
+
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.
 # They need to be set before the find_package(...) calls below.
