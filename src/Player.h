@@ -18,6 +18,8 @@
 #define PLAYER_H
 
 #include <QtCore>
+namespace  Frank
+{
 class Player: public QObject
 {
 		Q_OBJECT
@@ -35,5 +37,5 @@ class Player: public QObject
 		QString			m_name;
 
 };
-
+}
 #endif // PLAYER_H

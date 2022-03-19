@@ -18,7 +18,8 @@
 #define MAINWINDOW_H
 
 #include "ui_MainWindow.h"
-
+namespace Frank
+{
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
 		Q_OBJECT
@@ -28,5 +29,5 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 	protected:
 		void changeEvent(QEvent *e);
 };
-
+}
 #endif // MAINWINDOW_H

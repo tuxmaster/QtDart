@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 				app.installTranslator(&tr_app);
 			}
 	}
-	MainWindow mw;
+	Frank::MainWindow mw;
 	mw.show();
 	return app.exec();
 }

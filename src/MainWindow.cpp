@@ -15,7 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 #include "MainWindow.h"
-
+namespace Frank
+{
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	setupUi(this);
@@ -32,4 +33,5 @@ void MainWindow::changeEvent(QEvent *e)
 		default:
 			break;
 	}
+}
 }

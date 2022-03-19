@@ -15,7 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 #include "Player.h"
-
+namespace Frank
+{
 Player::Player(QObject *parent) : QObject(parent)
 {
 	this->setName(QString());
@@ -40,4 +41,5 @@ void Player::setId(const QUuid &id)
 {
 	if (id != m_id)
 		m_id=id;
+}
 }

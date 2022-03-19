@@ -18,7 +18,8 @@
 #define LEG_H
 
 #include <QtCore>
-
+namespace Frank
+{
 class Leg : public QObject
 {
 		Q_OBJECT
@@ -31,5 +32,5 @@ class Leg : public QObject
 		QUuid			m_id;
 
 };
-
+}
 #endif // LEG_H

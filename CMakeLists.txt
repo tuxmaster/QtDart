@@ -59,7 +59,6 @@ set(UI_PATH ui)
 set (CPP_HEADER
 	src/MainWindow.h
 	src/Leg.h
-	src/Params.h
 	src/Player.h
 )
 set(CPP_SOURCES

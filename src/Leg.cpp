@@ -16,6 +16,8 @@
 */
 #include "Leg.h"
 
+namespace Frank
+{
 Leg::Leg(QObject *parent) : QObject(parent)
 {
 	this->m_id=QUuid();
@@ -28,4 +30,5 @@ void Leg::setId(const QUuid id)
 {
 	if (this->m_id != id)
 		this->m_id=id;
+}
 }
