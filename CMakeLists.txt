@@ -7,6 +7,7 @@ string(REGEX MATCH "[0-9]+.[0-9]+.[0-9]+" version ${version_line})
 message(DEBUG "my version:${version}")
 
 project(QtDart VERSION ${version} LANGUAGES CXX)
+message(STATUS "Creating makefile for ${PROJECT_NAME} ${PROJECT_VERSION}")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
