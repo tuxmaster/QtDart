@@ -60,18 +60,21 @@ set (CPP_HEADER
 	src/MainWindow.h
 	src/Leg.h
 	src/Player.h
+	src/PlayerWindow.h
 )
 set(CPP_SOURCES
     src/Leg.cpp
     src/main.cpp
     src/MainWindow.cpp
     src/Player.cpp
+    src/PlayerWindow.cpp
 )
 set(TS_FILES
     i18n/QtDart_de_DE.ts
 )
 set(UI_FILES
     ${UI_PATH}/MainWindow.ui
+    ${UI_PATH}/PlayerWindow.ui
 )
 
 set(PROJECT_SOURCES
