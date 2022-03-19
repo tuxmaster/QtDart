@@ -52,6 +52,8 @@ endif()
 find_package(Qt6 COMPONENTS Core Gui LinguistTools Widgets REQUIRED)
 message(STATUS "Using Qt ${Qt6Core_VERSION}")
 
+configure_file(src/Params.h.in Params.h)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(UI_PATH ui)
 set (CPP_HEADER

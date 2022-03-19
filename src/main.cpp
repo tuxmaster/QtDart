@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2019 Frank Büttner tuxmaster@users.noreply.github.com
+	Copyright (C) 2022 Frank Büttner tuxmaster@users.noreply.github.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -16,13 +16,15 @@
 */
 #include <QtCore>
 #include <QApplication>
-#include "Params.h"
+#include <Params.h>
 #include "MainWindow.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 	app.setApplicationName(APP_NAME);
+	app.setApplicationVersion(APP_VERSION);
+	app.setOrganizationName(ORG_NAME);
 
 	QString translationPath=QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 	QTranslator tr_qt;
