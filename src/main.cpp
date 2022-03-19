@@ -18,7 +18,8 @@
 #include <QApplication>
 #include <Params.h>
 #include "MainWindow.h"
-
+Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_MAIN)
+Q_LOGGING_CATEGORY(LOG_CAT_MAIN, LOG_CAT_MAIN_TEXT)
 int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
@@ -29,13 +30,24 @@ int main(int argc, char *argv[])
 	QString translationPath=QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 	QTranslator tr_qt;
 	QTranslator tr_app;
+
+	qCDebug(LOG_CAT_MAIN) << "try to load qt translation from "<< translationPath;
 	if (tr_qt.load(QString("qt_%1").arg(QLocale::system().name()),translationPath))
 	{
-			if(tr_app.load(QString("%1_%2").arg(app.applicationName(), QLocale::system().name()),translationPath))
-			{
-				app.installTranslator(&tr_qt);
-				app.installTranslator(&tr_app);
-			}
+		qCDebug(LOG_CAT_MAIN) << "found Qt translation";
+		QString appTranslationName = QString("%1_%2").arg(app.applicationName(), QLocale::system().name());
+		qCDebug(LOG_CAT_MAIN) << "try to load app transalation" << appTranslationName;
+		if(!tr_app.load(appTranslationName, translationPath))
+		{
+			qCDebug(LOG_CAT_MAIN) << "failed load app translation from Qt path, try next the current path";
+			if(tr_app.load(QString("%1_%2").arg(app.applicationName(), QLocale::system().name())))
+				qCDebug(LOG_CAT_MAIN) << "app tranlation found";
+		}
+	}
+	if(!tr_app.isEmpty() and !tr_qt.isEmpty())
+	{
+		app.installTranslator(&tr_qt);
+		app.installTranslator(&tr_app);
 	}
 	Frank::MainWindow mw;
 	mw.show();

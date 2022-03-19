@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>Frank::MainWindow</name>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="14"/>
+        <source>MainWindow</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/MainWindow.ui" line="27"/>
+        <source>New game</source>
+        <translation>Neues Spiel</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/MainWindow.ui" line="16"/>

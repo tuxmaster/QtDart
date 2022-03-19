@@ -20,6 +20,7 @@ namespace Frank
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	setupUi(this);
+	this->setWindowTitle(qAppName());
 }
 
 void MainWindow::changeEvent(QEvent *e)

@@ -17,8 +17,13 @@
 #ifndef PARAMS_H
 #define PARAMS_H
 
+/* App defaults */
 #define APP_NAME	"@PROJECT_NAME@"
 #define APP_VERSION	"@PROJECT_VERSION@"
 #define ORG_NAME	"Frank"
+
+/* logging */
+#define LOG_CAT_MAIN		boot
+#define LOG_CAT_MAIN_TEXT	"main"
 
 #endif // PARAMS_H
