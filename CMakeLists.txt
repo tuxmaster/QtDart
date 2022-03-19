@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(QtDart VERSION 1.0.0 LANGUAGES CXX)
+# Read version from rpm spec file
+file(STRINGS "qdart.spec" version_line REGEX "^Version:[\t ]*[0-9]+.[0-9]+.[0-9]+$")
+message(DEBUG "my version line:${version_line}")
+string(REGEX MATCH "[0-9]+.[0-9]+.[0-9]+" version ${version_line})
+message(DEBUG "my version:${version}")
+
+project(QtDart VERSION ${version} LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
