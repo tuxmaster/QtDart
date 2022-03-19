@@ -6,10 +6,18 @@
     <message>
         <location filename="../ui/MainWindow.ui" line="14"/>
         <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../ui/MainWindow.ui" line="27"/>
+        <location filename="../ui/MainWindow.ui" line="27"/>
+        <location filename="../ui/MainWindow.ui" line="27"/>
+        <location filename="../ui/MainWindow.ui" line="27"/>
         <location filename="../ui/MainWindow.ui" line="27"/>
         <location filename="../ui/MainWindow.ui" line="27"/>
         <source>New game</source>
@@ -19,6 +27,10 @@
 <context>
     <name>Frank::PlayerWindow</name>
     <message>
+        <location filename="../ui/PlayerWindow.ui" line="14"/>
+        <location filename="../ui/PlayerWindow.ui" line="14"/>
+        <location filename="../ui/PlayerWindow.ui" line="14"/>
+        <location filename="../ui/PlayerWindow.ui" line="14"/>
         <location filename="../ui/PlayerWindow.ui" line="14"/>
         <source>Player</source>
         <translation>Spieler</translation>
