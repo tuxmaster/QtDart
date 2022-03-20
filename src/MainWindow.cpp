@@ -46,7 +46,7 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::on_pb_NewGame_clicked(bool checked)
 {
 	Q_UNUSED(checked);
-	qCDebug(LOG_CAT_MAINWINDOW) << "New Game selected";
+	qCDebug(LOG_CAT_MAINWINDOW) << "New game selected";
 	m_controller->newGame();
 }
 void MainWindow::getPlayers()

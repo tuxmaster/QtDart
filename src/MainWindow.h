@@ -32,7 +32,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 	public:
 		explicit		MainWindow(QWidget *parent = nullptr);
 	protected:
-		void			changeEvent(QEvent *e);
+		void			changeEvent(QEvent *e) override;
 	private Q_SLOTS:
 		void			on_pb_NewGame_clicked(bool checked);
 		void			getPlayers();

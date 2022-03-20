@@ -10,10 +10,12 @@
         <location filename="../ui/MainWindow.ui" line="14"/>
         <location filename="../ui/MainWindow.ui" line="14"/>
         <location filename="../ui/MainWindow.ui" line="14"/>
+        <location filename="../ui/MainWindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../ui/MainWindow.ui" line="27"/>
         <location filename="../ui/MainWindow.ui" line="27"/>
         <location filename="../ui/MainWindow.ui" line="27"/>
         <location filename="../ui/MainWindow.ui" line="27"/>
@@ -32,8 +34,24 @@
         <location filename="../ui/PlayerWindow.ui" line="14"/>
         <location filename="../ui/PlayerWindow.ui" line="14"/>
         <location filename="../ui/PlayerWindow.ui" line="14"/>
+        <location filename="../ui/PlayerWindow.ui" line="14"/>
         <source>Player</source>
         <translation>Spieler</translation>
+    </message>
+    <message>
+        <location filename="../ui/PlayerWindow.ui" line="24"/>
+        <source>Name:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/PlayerWindow.ui" line="31"/>
+        <source>Enter the name of the player.</source>
+        <translation>Bitte den Namen des Spielers eingeben.</translation>
+    </message>
+    <message>
+        <location filename="../ui/PlayerWindow.ui" line="40"/>
+        <source>add</source>
+        <translation>hinzufügen</translation>
     </message>
 </context>
 <context>
