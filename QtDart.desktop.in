@@ -3,3 +3,4 @@ Name=@PROJECT_NAME@
 Type=Application
 Terminal=false
 Exec=@PROJECT_NAME@
+Icon=@PROJECT_NAME@
