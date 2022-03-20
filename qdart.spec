@@ -7,7 +7,7 @@ Url:		https://github.com/tuxmaster/QtDart
 Summary:	Counts the points of an dart game
 Summary(de):	Eine Punktzählung für's Dartspielen
 %if %{with git-master}
-Source0:	QtDart-master.zip
+Source0:	QtDart-master.tar.xz
 %else
 Source0:	%{name}-%{version}.tar.xz
 %endif
