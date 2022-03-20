@@ -32,7 +32,7 @@ else()
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
 	message(VERBOSE "Using Gold linker")
     else()
-	 message(VERBOSE "Gold not found, using default linker")
+	message(VERBOSE "Gold not found, using default linker")
     endif()
 endif()
 
@@ -58,12 +58,14 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(UI_PATH ui)
 set (CPP_HEADER
-	src/MainWindow.h
+	src/Controller.h
 	src/Leg.h
+	src/MainWindow.h
 	src/Player.h
 	src/PlayerWindow.h
 )
 set(CPP_SOURCES
+    src/Controller.cpp
     src/Leg.cpp
     src/main.cpp
     src/MainWindow.cpp
@@ -94,8 +96,8 @@ set(DESKTOP_ICON_PATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/icon
 message(STATUS "Install translations to ${TRANSLATION_TARGET_PATH}")
 message(STATUS "Install binary to ${BIN_TARGET_PATH}")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message(STATUS "Install .dekstop file to ${DESKTOP_PATH}")
-	message(STATUS "Install dekstop icon file to ${DESKTOP_ICON_PATH}")
+    message(STATUS "Install .dekstop file to ${DESKTOP_PATH}")
+    message(STATUS "Install dekstop icon file to ${DESKTOP_ICON_PATH}")
 endif()
 
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} )
@@ -108,6 +110,6 @@ install(TARGETS ${PROJECT_NAME} DESTINATION ${BIN_TARGET_PATH})
 install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_TARGET_PATH})
 # Desktop stuff
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION ${DESKTOP_PATH})
-	install(FILES "img/Dartboard.svg" RENAME "${PROJECT_NAME}.svg" DESTINATION ${DESKTOP_ICON_PATH})
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION ${DESKTOP_PATH})
+    install(FILES "img/Dartboard.svg" RENAME "${PROJECT_NAME}.svg" DESTINATION ${DESKTOP_ICON_PATH})
 endif()

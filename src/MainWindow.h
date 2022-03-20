@@ -18,16 +18,28 @@
 #define MAINWINDOW_H
 
 #include "ui_MainWindow.h"
+#include <QtCore>
+#include <Params.h>
+
 namespace Frank
 {
+class Controller;
+class PlayerWindow;
+Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_MAINWINDOW)
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
 		Q_OBJECT
 	public:
-		explicit MainWindow(QWidget *parent = nullptr);
-
+		explicit		MainWindow(QWidget *parent = nullptr);
 	protected:
-		void changeEvent(QEvent *e);
+		void			changeEvent(QEvent *e);
+	private Q_SLOTS:
+		void			on_pb_NewGame_clicked(bool checked);
+		void			getPlayers();
+		void			getPlayersFinished();
+	private:
+		Controller*		m_controller;
+		PlayerWindow*	m_playerWindow;
 };
 }
 #endif // MAINWINDOW_H

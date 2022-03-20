@@ -15,12 +15,20 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 #include "MainWindow.h"
+#include "Controller.h"
+#include "PlayerWindow.h"
+
 namespace Frank
 {
+Q_LOGGING_CATEGORY(LOG_CAT_MAINWINDOW, LOG_CAT_MAINWINDOW_TEXT)
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	setupUi(this);
 	this->setWindowTitle(qAppName());
+	m_controller = new Controller(this);
+	m_playerWindow = new PlayerWindow(this);
+	connect(m_controller, &Controller::getPlayers, this, &MainWindow::getPlayers);
+	connect(m_playerWindow, &PlayerWindow::accepted, this, &MainWindow::getPlayersFinished);
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -34,5 +42,19 @@ void MainWindow::changeEvent(QEvent *e)
 		default:
 			break;
 	}
+}
+void MainWindow::on_pb_NewGame_clicked(bool checked)
+{
+	Q_UNUSED(checked);
+	qCDebug(LOG_CAT_MAINWINDOW) << "New Game selected";
+	m_controller->newGame();
+}
+void MainWindow::getPlayers()
+{
+	m_playerWindow->open();
+}
+void MainWindow::getPlayersFinished()
+{
+	qCDebug(LOG_CAT_MAINWINDOW) << "Select player done";
 }
 }

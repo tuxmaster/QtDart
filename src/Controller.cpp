@@ -14,18 +14,15 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#ifndef PARAMS_H
-#define PARAMS_H
+#include "Controller.h"
 
-/* App defaults */
-#define APP_NAME	"@PROJECT_NAME@"
-#define APP_VERSION	"@PROJECT_VERSION@"
-#define ORG_NAME	"Frank"
+namespace Frank {
+Controller::Controller(QObject *parent) : QObject(parent)
+{
 
-/* logging */
-#define LOG_CAT_MAIN		boot
-#define LOG_CAT_MAINWINDOW	mainwindow
-#define LOG_CAT_MAIN_TEXT	"qdart.main"
-#define LOG_CAT_MAINWINDOW_TEXT	"qdart.mainwindow"
-
-#endif // PARAMS_H
+}
+void Controller::newGame()
+{
+	Q_EMIT(getPlayers());
+}
+} // namespace Frank
