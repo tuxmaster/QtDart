@@ -1,4 +1,6 @@
-%bcond_with git-master
+# Enable git master build
+%bcond_with git
+
 Name:		qdart
 Version:	1.0.0
 Release:	1%{?dist}
@@ -6,7 +8,7 @@ License:	gpv3+
 Url:		https://github.com/tuxmaster/QtDart
 Summary:	Counts the points of an dart game
 Summary(de):	Eine Punktzählung für's Dartspielen
-%if %{with git-master}
+%if %{with git}
 Source0:	QtDart-master.tar.xz
 %else
 Source0:	%{name}-%{version}.tar.xz
@@ -21,12 +23,16 @@ An very simple tool to analysis your dart game play.
 Eine kleine einfache Auswertung der Würfe beim Dart.
 
 %prep
-%if %{with git-master}
+%if %{with git}
 %autosetup -n QtDart-master
 %else
 %autosetup
 %endif
 
 %build
+%cmake
+%cmake_build
 
 %install
+%cmake_install
+
