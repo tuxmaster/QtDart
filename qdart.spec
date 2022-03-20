@@ -47,6 +47,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{app_name}.desktop
 %files -f %{app_name}.lang
 %{_bindir}/%{app_name}
 %{_datadir}/applications/%{app_name}.desktop
+%{_datadir}/icons/hicolor/scalable/apps/%{app_name}.svg
 
 %changelog
 * <time stamp> <packager> <<email address>> - <version>-<release>
