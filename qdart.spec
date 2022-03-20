@@ -40,12 +40,13 @@ Eine kleine einfache Auswertung der Würfe beim Dart.
 %cmake_install
 %find_lang %{app_name} --with-qt
 
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{app_name}.desktop
+%ctest
+
 %files -f %{app_name}.lang
 %{_bindir}/%{app_name}
-
-%check
-desktop-file-validate %{buildroot}/%{_datadir}/applications/%{app_name}.desktop
-%ctest
+%{_datadir}/applications/%{app_name}.desktop
 
 %changelog
 * <time stamp> <packager> <<email address>> - <version>-<release>
