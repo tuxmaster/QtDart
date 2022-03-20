@@ -4,7 +4,7 @@
 Name:		qdart
 Version:	1.0.0
 Release:	1%{?dist}
-License:	gpv3+
+License:	GPLv3+
 Url:		https://github.com/tuxmaster/QtDart
 Summary:	Counts the points of an dart game
 Summary(de):	Eine Punktzählung für's Dartspielen
@@ -39,3 +39,10 @@ Eine kleine einfache Auswertung der Würfe beim Dart.
 
 %files -f QtDart.lang
 %{_bindir}/QtDart
+
+%check
+%ctest
+
+%changelog
+* <time stamp> <packager> <<email address>> - <version>-<release>
+- Start
