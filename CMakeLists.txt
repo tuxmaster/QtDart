@@ -89,11 +89,13 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${UI_PATH})
 set(TRANSLATION_TARGET_PATH "${CMAKE_INSTALL_PREFIX}/${QT6_INSTALL_TRANSLATIONS}" CACHE PATH "Target directory for translations" FORCE)
 set(BIN_TARGET_PATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}" CACHE PATH "Target directory for the app" FORCE)
 set(DESKTOP_PATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/applications" CACHE PATH "Target directory for the .deskop file" FORCE)
+set(DESKTOP_ICON_PATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps" CACHE PATH "Target directory for the icon app file" FORCE
 
 message(STATUS "Install translations to ${TRANSLATION_TARGET_PATH}")
 message(STATUS "Install binary to ${BIN_TARGET_PATH}")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message(STATUS "Install .dekstop file to ${DESKTOP_PATH}")
+	message(STATUS "Install dekstop icon file to ${DESKTOP_ICON_PATH}")
 endif()
 
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} )
@@ -106,5 +108,6 @@ install(TARGETS ${PROJECT_NAME} DESTINATION ${BIN_TARGET_PATH})
 install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_TARGET_PATH})
 # Desktop stuff
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION ${DESKTOP_PATH})
+	install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION ${DESKTOP_PATH})
+	install(FILES img/Dartboard.svg DESTINATION "${DESKTOP_ICON_PATH}/${PROJECT_NAME}.svg")
 endif()
