@@ -35,7 +35,7 @@ Eine kleine einfache Auswertung der Würfe beim Dart.
 
 %install
 %cmake_install
-%find_lang %{name} --with-qt
+%find_lang QtDart --with-qt
 
-%files -f %{name}.lang
+%files -f QtDart.lang
 %{_bindir}/QtDart
