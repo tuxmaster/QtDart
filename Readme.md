@@ -1,4 +1,9 @@
 # Build
+## RPM build
+### from git master
+1. download the zip master
+2. unzip -o QtDart-master.zip&&tar -cJf QtDart-master.tar.xz QtDart-master&&rpmbuild -ts QtDart-master.tar.xz --with git
+3. mock -r <chroot> <path  to the SRPM file> --with git
 ## build the app
 1. cmake -B <build dir>
 2. cmake --build <build dir> --parallel <cpu core numbers>
