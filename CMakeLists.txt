@@ -53,6 +53,7 @@ find_package(Qt6 COMPONENTS Core Gui LinguistTools Widgets REQUIRED)
 message(STATUS "Using Qt ${Qt6Core_VERSION}")
 
 configure_file(src/Params.h.in Params.h)
+configure_file("${PROJECT_NAME}.desktop.in" "${PROJECT_NAME}.desktop")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(UI_PATH ui)
@@ -87,9 +88,13 @@ set(PROJECT_SOURCES
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${UI_PATH})
 set(TRANSLATION_TARGET_PATH "${CMAKE_INSTALL_PREFIX}/${QT6_INSTALL_TRANSLATIONS}" CACHE PATH "Target directory for translations" FORCE)
 set(BIN_TARGET_PATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}" CACHE PATH "Target directory for the app" FORCE)
+set(DESKTOP_PATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/applications" CACHE PATH "Target directory for the .deskop file" FORCE)
 
 message(STATUS "Install translations to ${TRANSLATION_TARGET_PATH}")
 message(STATUS "Install binary to ${BIN_TARGET_PATH}")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	message(STATUS "Install .dekstop file to ${DESKTOP_PATH}")
+endif()
 
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} )
 qt_add_lupdate(${PROJECT_NAME} TS_FILES ${TS_FILES})
@@ -99,3 +104,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 install(TARGETS ${PROJECT_NAME} DESTINATION ${BIN_TARGET_PATH})
 install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_TARGET_PATH})
+# Desktop stuff
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+	 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop" DESTINATION ${DESKTOP_PATH})
+endif()

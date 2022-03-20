@@ -1,6 +1,8 @@
 # Enable git master build
 %bcond_with git
 
+%global app_name QtDart
+
 Name:		qdart
 Version:	1.0.0
 Release:	1%{?dist}
@@ -14,6 +16,7 @@ Source0:	QtDart-master.tar.xz
 Source0:	%{name}-%{version}.tar.xz
 %endif
 BuildRequires:	cmake(Qt6Core) cmake(Qt6Gui) cmake(Qt6LinguistTools) cmake(Qt6Widgets) 
+BuildRequires:	desktop-file-utils
 Recommends:	qt6-qttranslation
 
 %description
@@ -35,12 +38,13 @@ Eine kleine einfache Auswertung der Würfe beim Dart.
 
 %install
 %cmake_install
-%find_lang QtDart --with-qt
+%find_lang %{app_name} --with-qt
 
-%files -f QtDart.lang
-%{_bindir}/QtDart
+%files -f %{app_name}.lang
+%{_bindir}/%{app_name}
 
 %check
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{app_name}.desktop
 %ctest
 
 %changelog
