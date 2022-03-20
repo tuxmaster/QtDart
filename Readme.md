@@ -8,6 +8,7 @@
 ### build the app
 1. cmake -B <build dir>
 2. cmake --build <build dir> --parallel <cpu core numbers>
+3. cmake --install <build dir>
 ### update translations
 1. cmake --build <build dir> --target update_translations
 2. update the ts file(s) with the Qt linguist tool
