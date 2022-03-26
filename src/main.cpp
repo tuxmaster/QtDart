@@ -29,8 +29,7 @@ int main(int argc, char *argv[])
 	app.setApplicationVersion(APP_VERSION);
 	app.setOrganizationName(ORG_NAME);
 
-	QIcon icon=QIcon(":/img/Dartboard.svg");
-	app.setWindowIcon(icon);
+	app.setWindowIcon(QIcon(":/img/Dartboard.svg"));
 
 	QString translationPath=QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 	QTranslator tr_qt;
