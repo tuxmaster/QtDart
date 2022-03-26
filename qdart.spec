@@ -17,6 +17,7 @@ Source0:	%{name}-%{version}.tar.xz
 %endif
 BuildRequires:	cmake(Qt6Core) cmake(Qt6Gui) cmake(Qt6LinguistTools) cmake(Qt6Widgets) 
 BuildRequires:	desktop-file-utils
+Requires:	qt6-qtsvg
 Recommends:	qt6-qttranslation
 
 %description
