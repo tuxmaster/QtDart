@@ -16,6 +16,8 @@
 */
 #include <QtCore>
 #include <QApplication>
+#include <QtGui>
+#include <QtWidgets>
 #include <Params.h>
 #include "MainWindow.h"
 Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_MAIN)
@@ -26,6 +28,9 @@ int main(int argc, char *argv[])
 	app.setApplicationName(APP_NAME);
 	app.setApplicationVersion(APP_VERSION);
 	app.setOrganizationName(ORG_NAME);
+
+	QIcon icon=QIcon(":/img/Dartboard.svg");
+	app.setWindowIcon(icon);
 
 	QString translationPath=QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 	QTranslator tr_qt;
@@ -49,6 +54,15 @@ int main(int argc, char *argv[])
 		app.installTranslator(&tr_qt);
 		app.installTranslator(&tr_app);
 	}
+
+	QList<QByteArray> formats = QImageReader::supportedImageFormats();
+	if(!formats.contains("svg"))
+	{
+		qCDebug(LOG_CAT_MAIN) << "supported image formats" << formats;
+		QMessageBox::critical(nullptr,  QCoreApplication::translate("main","Error"), QCoreApplication::translate("main", "The SVG part of Qt is missing."));
+		return 1;
+	}
+
 	Frank::MainWindow mw;
 	mw.show();
 	return app.exec();
