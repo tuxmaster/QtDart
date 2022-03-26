@@ -15,4 +15,4 @@
 3. cmake --build \<build dir\>
 # Run
 ## Run with debug output
-QT_LOGGING_RULES="*.debug=false;main.debug=true" QtDart
+QT_LOGGING_RULES="*.debug=false;qdart.*.debug=true" QtDart
