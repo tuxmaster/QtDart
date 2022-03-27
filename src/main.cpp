@@ -40,12 +40,12 @@ int main(int argc, char *argv[])
 	{
 		qCDebug(LOG_CAT_MAIN) << "found Qt translation";
 		QString appTranslationName = QString("%1_%2").arg(app.applicationName(), QLocale::system().name());
-		qCDebug(LOG_CAT_MAIN) << "try to load app transalation" << appTranslationName;
+		qCDebug(LOG_CAT_MAIN) << "try to load app translation" << appTranslationName;
 		if(!tr_app.load(appTranslationName, translationPath))
 		{
 			qCDebug(LOG_CAT_MAIN) << "failed load app translation from Qt path, try next the current path";
 			if(tr_app.load(QString("%1_%2").arg(app.applicationName(), QLocale::system().name())))
-				qCDebug(LOG_CAT_MAIN) << "app tranlation found";
+				qCDebug(LOG_CAT_MAIN) << "app translation found";
 		}
 	}
 	if(!tr_app.isEmpty() and !tr_qt.isEmpty())
