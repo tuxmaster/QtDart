@@ -1,11 +1,16 @@
 #include "PlayerWindow.h"
 #include <QtWidgets>
+#include "Controller.h"
+#include "PlayerModel.h"
 
 namespace Frank {
 Q_LOGGING_CATEGORY(LOG_CAT_PLAYERWINDOW, LOG_CAT_PLAYERWINDOW_TEXT)
-PlayerWindow::PlayerWindow(QWidget *parent) : QDialog(parent)
+PlayerWindow::PlayerWindow(Controller* controller, QWidget *parent) : QDialog(parent)
 {
 	setupUi(this);
+	m_controller = controller;
+	m_PlayerModel = new PlayerModel(m_controller->players(), this);
+	lvPlayer->setModel(m_PlayerModel);
 }
 void PlayerWindow::changeEvent(QEvent *e)
 {

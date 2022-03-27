@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	setupUi(this);
 	this->setWindowTitle(qAppName());
 	m_controller = new Controller(this);
-	m_playerWindow = new PlayerWindow(this);
+	m_playerWindow = new PlayerWindow(m_controller, this);
 	connect(m_controller, &Controller::getPlayers, this, &MainWindow::getPlayers);
 	connect(m_playerWindow, &PlayerWindow::accepted, this, &MainWindow::getPlayersFinished);
 }

@@ -14,27 +14,22 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#ifndef FRANK_CONTROLLER_H
-#define FRANK_CONTROLLER_H
-
-#include <QtCore>
+#include "PlayerModel.h"
 
 namespace Frank {
-class Player;
-class Controller : public QObject
+PlayerModel::PlayerModel(const QHash<QUuid, Player*>* data, QObject *parent) : QAbstractListModel(parent)
 {
-		Q_OBJECT
-	public:
-		explicit						Controller(QObject *parent = nullptr);
-										~Controller();
-		const QHash<QUuid, Player*>*	players() const { return m_player; }
-	public Q_SLOTS:
-		void							newGame();
-	Q_SIGNALS:
-		void							getPlayers();
-	private:
-		QHash<QUuid, Player*>*			m_player;
-};
+	m_data = data;
+}
+int PlayerModel::rowCount(const QModelIndex &parent) const
+{
+	Q_UNUSED(parent);
+	return m_data->size();
+}
+QVariant PlayerModel::data(const QModelIndex &index, int role) const
+{
+	Q_UNUSED(index);
+	Q_UNUSED(role);
+	return QVariant();
+}
 } // namespace Frank
-
-#endif // FRANK_CONTROLLER_H

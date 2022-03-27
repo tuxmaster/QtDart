@@ -62,6 +62,7 @@ set (CPP_HEADER
 	src/Leg.h
 	src/MainWindow.h
 	src/Player.h
+	src/PlayerModel.h
 	src/PlayerWindow.h
 )
 set(CPP_SOURCES
@@ -70,6 +71,7 @@ set(CPP_SOURCES
     src/main.cpp
     src/MainWindow.cpp
     src/Player.cpp
+    src/PlayerModel.cpp
     src/PlayerWindow.cpp
 )
 set(TS_FILES

@@ -15,11 +15,16 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 #include "Controller.h"
+#include "Player.h"
 
 namespace Frank {
 Controller::Controller(QObject *parent) : QObject(parent)
 {
-
+	m_player = new QHash<QUuid, Player*>;
+}
+Controller::~Controller()
+{
+	delete m_player;
 }
 void Controller::newGame()
 {
