@@ -18,18 +18,21 @@
 #define FRANK_PLAYERMODEL_H
 
 #include <QtCore>
+#include "Params.h"
 
 namespace Frank {
 class Player;
+
+Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_PLAYERMODEL)
 class PlayerModel : public QAbstractListModel
 {
 		Q_OBJECT
 	public:
-		explicit			PlayerModel(const QHash<QUuid, Player*>* data, QObject *parent = nullptr);
-		virtual int			rowCount(const QModelIndex &parent = QModelIndex()) const override;
-		virtual QVariant	data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+		explicit				PlayerModel(const QList<Player*>* data, QObject *parent = nullptr);
+		virtual int				rowCount(const QModelIndex &parent = QModelIndex()) const override;
+		virtual QVariant		data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 	private:
-		const QHash<QUuid, Player*>*	m_data;
+		const QList<Player*>*	m_data;
 };
 } // namespace Frank
 #endif // FRANK_PLAYERMODEL_H

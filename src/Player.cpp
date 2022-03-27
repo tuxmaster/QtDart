@@ -25,7 +25,7 @@ Player::Player(QObject *parent) : QObject(parent)
 Player::Player(const QString &name,QObject *parent) : QObject(parent)
 {
 	this->setName(name);
-	this->setId(QUuid());
+	this->setId(QUuid::createUuid());
 }
 Player::Player(const QString &name, const QUuid &id,QObject *parent) : QObject(parent)
 {

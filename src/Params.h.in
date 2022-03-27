@@ -18,16 +18,19 @@
 #define PARAMS_H
 
 /* App defaults */
-#define APP_NAME			"@PROJECT_NAME@"
-#define APP_VERSION			"@PROJECT_VERSION@"
-#define ORG_NAME			"Frank"
+#define APP_NAME					"@PROJECT_NAME@"
+#define APP_VERSION					"@PROJECT_VERSION@"
+#define ORG_NAME					"Frank"
 
 /* logging */
-#define LOG_CAT_MAIN			boot
-#define LOG_CAT_MAINWINDOW		mainwindow
+#define LOG_CAT_MAIN				boot
+#define LOG_CAT_MAINWINDOW			mainwindow
 #define LOG_CAT_PLAYERWINDOW		playerwindow
-#define LOG_CAT_MAIN_TEXT		"qdart.main"
+#define LOG_CAT_PLAYERMODEL			playermodel
+
+#define LOG_CAT_MAIN_TEXT			"qdart.main"
 #define LOG_CAT_MAINWINDOW_TEXT		"qdart.mainwindow"
 #define LOG_CAT_PLAYERWINDOW_TEXT	"qdart.playerwindow"
+#define LOG_CAT_PLAYERMODEL_TEXT	"qdart.playermodel"
 
 #endif // PARAMS_H

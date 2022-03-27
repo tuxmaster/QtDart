@@ -14,22 +14,36 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
+#include <QtGui>
 #include "PlayerModel.h"
+#include "Player.h"
 
 namespace Frank {
-PlayerModel::PlayerModel(const QHash<QUuid, Player*>* data, QObject *parent) : QAbstractListModel(parent)
+Q_LOGGING_CATEGORY(LOG_CAT_PLAYERMODEL, LOG_CAT_PLAYERMODEL_TEXT)
+PlayerModel::PlayerModel(const QList<Player*>* data, QObject *parent) : QAbstractListModel(parent)
 {
 	m_data = data;
 }
 int PlayerModel::rowCount(const QModelIndex &parent) const
 {
 	Q_UNUSED(parent);
+	qCDebug(LOG_CAT_PLAYERMODEL) << m_data->size() << "players in the model";
 	return m_data->size();
 }
 QVariant PlayerModel::data(const QModelIndex &index, int role) const
 {
-	Q_UNUSED(index);
-	Q_UNUSED(role);
-	return QVariant();
+	if(!index.isValid())
+		return QVariant();
+	switch (role)
+	{
+		case Qt::DisplayRole:
+			qCDebug(LOG_CAT_PLAYERMODEL) << "displayRole for player" <<index.row();
+			return m_data->at(index.row())->getName();
+		case Qt::DecorationRole:
+			qCDebug(LOG_CAT_PLAYERMODEL) << "decorationRole for player" <<index.row();
+			return QIcon::fromTheme("edit-delete");
+		default:
+			return QVariant();
+	}
 }
 } // namespace Frank

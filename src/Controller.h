@@ -25,15 +25,15 @@ class Controller : public QObject
 {
 		Q_OBJECT
 	public:
-		explicit						Controller(QObject *parent = nullptr);
-										~Controller();
-		const QHash<QUuid, Player*>*	players() const { return m_player; }
+		explicit				Controller(QObject *parent = nullptr);
+								~Controller();
+		const QList<Player*>*	players() const { return m_player; }
 	public Q_SLOTS:
-		void							newGame();
+		void					newGame();
 	Q_SIGNALS:
-		void							getPlayers();
+		void					getPlayers();
 	private:
-		QHash<QUuid, Player*>*			m_player;
+		QList<Player*>*			m_player;
 };
 } // namespace Frank
 
