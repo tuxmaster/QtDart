@@ -17,7 +17,7 @@
 #ifndef FRANK_PLAYERMODEL_H
 #define FRANK_PLAYERMODEL_H
 
-#include <QtCore>
+#include <QtGui>
 #include "Params.h"
 
 namespace Frank {
@@ -33,6 +33,7 @@ class PlayerModel : public QAbstractListModel
 		virtual QVariant		data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 	private:
 		const QList<Player*>*	m_data;
+		static QIcon			iconDelete;
 };
 } // namespace Frank
 #endif // FRANK_PLAYERMODEL_H

@@ -14,7 +14,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#include <QtGui>
+#include <QtWidgets>
 #include "PlayerModel.h"
 #include "Player.h"
 
@@ -22,6 +22,8 @@ namespace Frank {
 Q_LOGGING_CATEGORY(LOG_CAT_PLAYERMODEL, LOG_CAT_PLAYERMODEL_TEXT)
 PlayerModel::PlayerModel(const QList<Player*>* data, QObject *parent) : QAbstractListModel(parent)
 {
+	if(PlayerModel::iconDelete.isNull())
+		PlayerModel::iconDelete = qApp->style()->standardIcon(QStyle::SP_TrashIcon);
 	m_data = data;
 }
 int PlayerModel::rowCount(const QModelIndex &parent) const
@@ -41,9 +43,10 @@ QVariant PlayerModel::data(const QModelIndex &index, int role) const
 			return m_data->at(index.row())->getName();
 		case Qt::DecorationRole:
 			qCDebug(LOG_CAT_PLAYERMODEL) << "decorationRole for player" <<index.row();
-			return QIcon::fromTheme("edit-delete");
+			return QIcon::fromTheme("edit-delete", PlayerModel::iconDelete);
 		default:
 			return QVariant();
 	}
 }
+QIcon PlayerModel::iconDelete = QIcon();
 } // namespace Frank
