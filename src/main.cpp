@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 	}
 	if(!tr_app.isEmpty() and !tr_qt.isEmpty())
 	{
+		qCDebug(LOG_CAT_MAIN) << "App and Qt translaton found, using both.";
 		app.installTranslator(&tr_qt);
 		app.installTranslator(&tr_app);
 	}

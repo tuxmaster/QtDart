@@ -28,11 +28,12 @@ class PlayerModel : public QAbstractListModel
 {
 		Q_OBJECT
 	public:
-		explicit				PlayerModel(const QList<Player*>* data, QObject *parent = nullptr);
+		explicit				PlayerModel(QList<Player *> *data, QObject *parent = nullptr);
 		virtual int				rowCount(const QModelIndex &parent = QModelIndex()) const override;
 		virtual QVariant		data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+		void					addPlayer(const QString &name);
 	private:
-		const QList<Player*>*	m_data;
+		QList<Player*>*			m_data;
 		static QIcon			iconDelete;
 };
 } // namespace Frank

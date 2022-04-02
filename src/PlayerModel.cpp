@@ -20,7 +20,7 @@
 
 namespace Frank {
 Q_LOGGING_CATEGORY(LOG_CAT_PLAYERMODEL, LOG_CAT_PLAYERMODEL_TEXT)
-PlayerModel::PlayerModel(const QList<Player*>* data, QObject *parent) : QAbstractListModel(parent)
+PlayerModel::PlayerModel(QList<Player*>* data, QObject *parent) : QAbstractListModel(parent)
 {
 	if(PlayerModel::iconDelete.isNull())
 		PlayerModel::iconDelete = qApp->style()->standardIcon(QStyle::SP_TrashIcon);
@@ -46,6 +46,28 @@ QVariant PlayerModel::data(const QModelIndex &index, int role) const
 			return QIcon::fromTheme("edit-delete", PlayerModel::iconDelete);
 		default:
 			return QVariant();
+	}
+}
+void PlayerModel::addPlayer(const QString &name)
+{
+	qCDebug(LOG_CAT_PLAYERMODEL)<<"try to add player"<<name;
+	bool playerExits = false;
+
+	for(Player *p:*m_data)
+	{
+		if(name == p->getName())
+		{
+			qCDebug(LOG_CAT_PLAYERMODEL)<<"Player"<<name<<"alrady exists, add will ignored.";
+			playerExits=true;
+			break;
+		}
+	}
+	if(!playerExits)
+	{
+		qCDebug(LOG_CAT_PLAYERMODEL)<<"Add player"<<name;
+		beginInsertRows(index(m_data->size()),m_data->size()+1, m_data->size() +1);
+		m_data->append(new Player(name, this));
+		endInsertRows();
 	}
 }
 QIcon PlayerModel::iconDelete = QIcon();

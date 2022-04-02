@@ -27,7 +27,7 @@ class Controller : public QObject
 	public:
 		explicit				Controller(QObject *parent = nullptr);
 								~Controller();
-		const QList<Player*>*	players() const { return m_player; }
+		QList<Player*>*			players() { return m_player; }
 	public Q_SLOTS:
 		void					newGame();
 	Q_SIGNALS:
