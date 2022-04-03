@@ -55,7 +55,7 @@ void PlayerModel::addPlayer(const QString &name)
 
 	for(Player *p:*m_data)
 	{
-		if(name == p->getName())
+		if(name.toLower() == p->getName().toLower())
 		{
 			qCDebug(LOG_CAT_PLAYERMODEL)<<"Player"<<name<<"alrady exists, add will ignored.";
 			playerExits=true;
