@@ -36,6 +36,8 @@ class PlayerWindow : public QDialog, private Ui::PlayerWindow
 		void			showEvent(QShowEvent* e) override;
 	private Q_SLOTS:
 		void			on_pbAdd_clicked(bool checked);
+		void			on_tvPlayer_clicked(const QModelIndex &index);
+		void			playerAdded();
 	private:
 		PlayerModel*	m_PlayerModel;
 		Controller*		m_controller;

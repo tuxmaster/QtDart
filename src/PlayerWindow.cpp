@@ -26,7 +26,11 @@ PlayerWindow::PlayerWindow(Controller* controller, QWidget *parent) : QDialog(pa
 	setupUi(this);
 	m_controller = controller;
 	m_PlayerModel = new PlayerModel(m_controller->players(), this);
-	lvPlayer->setModel(m_PlayerModel);
+	connect(m_PlayerModel, &PlayerModel::playerAdded, this, &PlayerWindow::playerAdded);
+	tvPlayer->setModel(m_PlayerModel);
+
+	m_PlayerModel->addPlayer("Hans");
+	m_PlayerModel->addPlayer("Egon");
 }
 void PlayerWindow::changeEvent(QEvent *e)
 {
@@ -58,5 +62,19 @@ void PlayerWindow::showEvent(QShowEvent *e)
 {
 	leName->clear();
 	e->accept();
+}
+void PlayerWindow::playerAdded()
+{
+	tvPlayer->resizeColumnToContents(0);
+	tvPlayer->horizontalHeader()->setStretchLastSection(true);
+}
+
+void PlayerWindow::on_tvPlayer_clicked(const QModelIndex &index)
+{
+	qCDebug(LOG_CAT_PLAYERWINDOW)<<"Selected player to remove row"<<index.row()<<"cloumn"<<index.column();
+	if(index.column()==0)
+	{
+		qCDebug(LOG_CAT_PLAYERWINDOW)<<"Player in row"<<index.row()<<"with name"<<m_PlayerModel->data(m_PlayerModel->index(index.row(),1))<<"will removed";
+	}
 }
 } // namespace Frank

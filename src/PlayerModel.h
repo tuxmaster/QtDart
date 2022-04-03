@@ -24,14 +24,17 @@ namespace Frank {
 class Player;
 
 Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_PLAYERMODEL)
-class PlayerModel : public QAbstractListModel
+class PlayerModel : public QAbstractTableModel
 {
 		Q_OBJECT
 	public:
 		explicit				PlayerModel(QList<Player *> *data, QObject *parent = nullptr);
 		virtual int				rowCount(const QModelIndex &parent = QModelIndex()) const override;
+		virtual int				columnCount(const QModelIndex &parent) const override { return 2;}
 		virtual QVariant		data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 		void					addPlayer(const QString &name);
+	Q_SIGNALS:
+		void					playerAdded();
 	private:
 		QList<Player*>*			m_data;
 		static QIcon			iconDelete;

@@ -20,7 +20,7 @@
 
 namespace Frank {
 Q_LOGGING_CATEGORY(LOG_CAT_PLAYERMODEL, LOG_CAT_PLAYERMODEL_TEXT)
-PlayerModel::PlayerModel(QList<Player*>* data, QObject *parent) : QAbstractListModel(parent)
+PlayerModel::PlayerModel(QList<Player*>* data, QObject *parent) : QAbstractTableModel(parent)
 {
 	if(PlayerModel::iconDelete.isNull())
 		PlayerModel::iconDelete = qApp->style()->standardIcon(QStyle::SP_TrashIcon);
@@ -39,14 +39,19 @@ QVariant PlayerModel::data(const QModelIndex &index, int role) const
 	switch (role)
 	{
 		case Qt::DisplayRole:
-			qCDebug(LOG_CAT_PLAYERMODEL) << "displayRole for player" <<index.row();
-			return m_data->at(index.row())->getName();
+			qCDebug(LOG_CAT_PLAYERMODEL) << "displayRole for player row"<<index.row()<<"column"<<index.column();
+			if(index.column() == 1)
+				return m_data->at(index.row())->getName();
+			break;
 		case Qt::DecorationRole:
-			qCDebug(LOG_CAT_PLAYERMODEL) << "decorationRole for player" <<index.row();
-			return QIcon::fromTheme("edit-delete", PlayerModel::iconDelete);
+			qCDebug(LOG_CAT_PLAYERMODEL) << "decorationRole for player row"<<index.row()<<"column"<<index.column();
+			if(index.column() == 0 )
+				return QIcon::fromTheme("edit-delete", PlayerModel::iconDelete);
+			break;
 		default:
 			return QVariant();
 	}
+	return QVariant();
 }
 void PlayerModel::addPlayer(const QString &name)
 {
@@ -65,9 +70,10 @@ void PlayerModel::addPlayer(const QString &name)
 	if(!playerExits)
 	{
 		qCDebug(LOG_CAT_PLAYERMODEL)<<"Add player"<<name;
-		beginInsertRows(index(m_data->size()),m_data->size()+1, m_data->size() +1);
+		beginInsertRows(index(m_data->size(),0),m_data->size()+1, m_data->size() +1);
 		m_data->append(new Player(name, this));
 		endInsertRows();
+		Q_EMIT(playerAdded());
 	}
 }
 QIcon PlayerModel::iconDelete = QIcon();

@@ -21,10 +21,6 @@ namespace Frank {
 Controller::Controller(QObject *parent) : QObject(parent)
 {
 	m_player = new QList<Player*>;
-
-
-	m_player->append(new Player("Hans", this));
-	m_player->append(new Player("Egon", this));
 }
 Controller::~Controller()
 {
