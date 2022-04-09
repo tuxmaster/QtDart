@@ -63,6 +63,7 @@ void MainWindow::getLegs()
 	if(ok)
 	{
 		qCDebug(LOG_CAT_MAINWINDOW)<<"Start an game for"<<m_controller->players()->size()<<"players, playing"<<legs<<"legs.";
+		m_controller->newMatch();
 	}
 }
 }

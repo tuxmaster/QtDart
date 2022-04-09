@@ -16,16 +16,23 @@
 */
 #include "Controller.h"
 #include "Player.h"
+#include "Match.h"
 
 namespace Frank {
 Q_LOGGING_CATEGORY(LOG_CAT_CONTROLLER, LOG_CAT_CONTROLLER_TEXT)
 Controller::Controller(QObject *parent) : QObject(parent)
 {
-	m_player = new QList<Player*>;
+	m_players = new QList<Player*>;
+	m_matches = new QList<Match*>;
 }
 Controller::~Controller()
 {
-	delete m_player;
+	for(Player* p:*m_players)
+		p->deleteLater();
+	for(Match* m:*m_matches)
+		m->deleteLater();
+	delete m_players;
+	delete m_matches;
 }
 void Controller::newGame()
 {
@@ -33,13 +40,26 @@ void Controller::newGame()
 }
 void Controller::newLegs()
 {
-	if(!m_player->isEmpty())
+	if(!m_players->isEmpty())
 	{
 		qCDebug(LOG_CAT_CONTROLLER)<<"Player list are not empty, so we can get the legs";
 		Q_EMIT(getLegs());
 	}
 	else
 		qCDebug(LOG_CAT_CONTROLLER)<<"Player list is empty, stopping here";
-
+}
+void Controller::newMatch()
+{
+	m_matches->append(new Match(this));
+	m_matches->last()->start();
+}
+Match* Controller::currentMatch()
+{
+	if(m_matches->last()->getEnd().isValid())
+	{
+		qCDebug(LOG_CAT_CONTROLLER)<<"The last match was endet, returnung nullptr";
+		return nullptr;
+	}
+	return m_matches->last();
 }
 } // namespace Frank

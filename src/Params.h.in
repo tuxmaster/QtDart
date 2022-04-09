@@ -26,6 +26,7 @@
 #define LOG_CAT_MAIN				boot
 #define LOG_CAT_CONTROLLER			controller
 #define LOG_CAT_MAINWINDOW			mainwindow
+#define LOG_CAT_MATCH				match
 #define LOG_CAT_PLAYERWINDOW		playerwindow
 #define LOG_CAT_PLAYERMODEL			playermodel
 
@@ -33,6 +34,7 @@
 #define LOG_CAT_CONTROLLER_TEXT		LOG_TEXT_BASE ".controller"
 #define LOG_CAT_MAIN_TEXT			LOG_TEXT_BASE ".main"
 #define LOG_CAT_MAINWINDOW_TEXT		LOG_TEXT_BASE ".mainwindow"
+#define LOG_CAT_MATCH_TEXT			LOG_TEXT_BASE ".match"
 #define LOG_CAT_PLAYERWINDOW_TEXT	LOG_TEXT_BASE ".playerwindow"
 #define LOG_CAT_PLAYERMODEL_TEXT	LOG_TEXT_BASE ".playermodel"
 

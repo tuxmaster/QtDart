@@ -22,6 +22,7 @@
 
 namespace Frank {
 class Player;
+class Match;
 Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_CONTROLLER)
 class Controller : public QObject
 {
@@ -29,7 +30,9 @@ class Controller : public QObject
 	public:
 		explicit				Controller(QObject *parent = nullptr);
 								~Controller();
-		QList<Player*>*			players() { return m_player; }
+		QList<Player*>*			players() { return m_players; }
+		void					newMatch();
+		Match*					currentMatch();
 	public Q_SLOTS:
 		void					newGame();
 		void					newLegs();
@@ -37,7 +40,8 @@ class Controller : public QObject
 		void					getPlayers();
 		void					getLegs();
 	private:
-		QList<Player*>*			m_player;
+		QList<Player*>*			m_players;
+		QList<Match*>*			m_matches;
 };
 } // namespace Frank
 

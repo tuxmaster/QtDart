@@ -28,9 +28,13 @@ class Leg : public QObject
 		explicit		Leg(const QUuid id, QObject *parent = nullptr);
 		void			setId(const QUuid id);
 		const QUuid&	getId() const { return m_id;}
+	public Q_SLOTS:
+		void			start();
+		void			end();
 	private:
 		QUuid			m_id;
-
+		QDateTime		m_start;
+		QDateTime		m_end;
 };
 }
 #endif // LEG_H

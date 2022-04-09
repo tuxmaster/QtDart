@@ -14,32 +14,27 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
+#include "Match.h"
+#include "Leg.h"
 #include "Player.h"
-namespace Frank
+
+namespace Frank {
+Q_LOGGING_CATEGORY(LOG_CAT_MATCH, LOG_CAT_MATCH_TEXT)
+Match::Match(QObject *parent):QObject(parent)
 {
-Player::Player(QObject *parent) : QObject(parent)
+}
+Match::Match(const quint8 &legs, QObject *parent):QObject(parent)
 {
-	setName(QString());
-	setId(QUuid());
+	for(quint8 l=0;l<legs;l++)
+		m_legs->append(new Leg(this));
 }
-Player::Player(const QString &name,QObject *parent) : QObject(parent)
+void Match::start()
 {
-	setName(name);
-	setId(QUuid::createUuid());
+	m_start = QDateTime::currentDateTimeUtc();
+	qCDebug(LOG_CAT_MATCH)<<"stated at"<<m_start;
 }
-Player::Player(const QString &name, const QUuid &id,QObject *parent) : QObject(parent)
+void Match::end()
 {
-	setName(name);
-	setId(id);
+	m_end = QDateTime::currentDateTimeUtc();
 }
-void Player::setName(const QString &name)
-{
-	if (name != m_name)
-		m_name=name;
-}
-void Player::setId(const QUuid &id)
-{
-	if (id != m_id)
-		m_id=id;
-}
-}
+} // namespace Frank

@@ -14,32 +14,34 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#include "Player.h"
+#ifndef FRANK_MATCH_H
+#define FRANK_MATCH_H
+
+#include <QtCore>
+#include "Params.h"
+
 namespace Frank
 {
-Player::Player(QObject *parent) : QObject(parent)
+class Leg;
+class Player;
+Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_MATCH)
+class Match: public QObject
 {
-	setName(QString());
-	setId(QUuid());
-}
-Player::Player(const QString &name,QObject *parent) : QObject(parent)
-{
-	setName(name);
-	setId(QUuid::createUuid());
-}
-Player::Player(const QString &name, const QUuid &id,QObject *parent) : QObject(parent)
-{
-	setName(name);
-	setId(id);
-}
-void Player::setName(const QString &name)
-{
-	if (name != m_name)
-		m_name=name;
-}
-void Player::setId(const QUuid &id)
-{
-	if (id != m_id)
-		m_id=id;
-}
-}
+		Q_OBJECT
+	public:
+		explicit			Match(QObject *parent = nullptr);
+		explicit			Match(const quint8 &legs, QObject *parent = nullptr);
+		const QDateTime&	getStart() const {return m_start; }
+		const QDateTime&	getEnd() const { return m_end; }
+	public Q_SLOTS:
+		void				start();
+		void				end();
+	private:
+		QList<Leg*>*		m_legs;
+		QList<Player*>*		m_players;
+		QDateTime			m_start;
+		QDateTime			m_end;
+};
+} // namespace Frank
+
+#endif // FRANK_MATCH_H
