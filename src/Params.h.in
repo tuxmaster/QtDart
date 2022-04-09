@@ -24,13 +24,16 @@
 
 /* logging */
 #define LOG_CAT_MAIN				boot
+#define LOG_CAT_CONTROLLER			controller
 #define LOG_CAT_MAINWINDOW			mainwindow
 #define LOG_CAT_PLAYERWINDOW		playerwindow
 #define LOG_CAT_PLAYERMODEL			playermodel
 
-#define LOG_CAT_MAIN_TEXT			"qdart.main"
-#define LOG_CAT_MAINWINDOW_TEXT		"qdart.mainwindow"
-#define LOG_CAT_PLAYERWINDOW_TEXT	"qdart.playerwindow"
-#define LOG_CAT_PLAYERMODEL_TEXT	"qdart.playermodel"
+#define LOG_TEXT_BASE				"qdart"
+#define LOG_CAT_CONTROLLER_TEXT		LOG_TEXT_BASE ".controller"
+#define LOG_CAT_MAIN_TEXT			LOG_TEXT_BASE ".main"
+#define LOG_CAT_MAINWINDOW_TEXT		LOG_TEXT_BASE ".mainwindow"
+#define LOG_CAT_PLAYERWINDOW_TEXT	LOG_TEXT_BASE ".playerwindow"
+#define LOG_CAT_PLAYERMODEL_TEXT	LOG_TEXT_BASE ".playermodel"
 
 #endif // PARAMS_H

@@ -36,7 +36,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 	private Q_SLOTS:
 		void			on_pb_NewGame_clicked(bool checked);
 		void			getPlayers();
-		void			getPlayersFinished();
+		void			getLegs();
 	private:
 		Controller*		m_controller;
 		PlayerWindow*	m_playerWindow;

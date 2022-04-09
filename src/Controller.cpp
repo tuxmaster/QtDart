@@ -18,6 +18,7 @@
 #include "Player.h"
 
 namespace Frank {
+Q_LOGGING_CATEGORY(LOG_CAT_CONTROLLER, LOG_CAT_CONTROLLER_TEXT)
 Controller::Controller(QObject *parent) : QObject(parent)
 {
 	m_player = new QList<Player*>;
@@ -29,5 +30,16 @@ Controller::~Controller()
 void Controller::newGame()
 {
 	Q_EMIT(getPlayers());
+}
+void Controller::newLegs()
+{
+	if(!m_player->isEmpty())
+	{
+		qCDebug(LOG_CAT_CONTROLLER)<<"Player list are not empty, so we can get the legs";
+		Q_EMIT(getLegs());
+	}
+	else
+		qCDebug(LOG_CAT_CONTROLLER)<<"Player list is empty, stopping here";
+
 }
 } // namespace Frank

@@ -27,6 +27,7 @@ PlayerWindow::PlayerWindow(Controller* controller, QWidget *parent) : QDialog(pa
 	m_controller = controller;
 	m_PlayerModel = new PlayerModel(m_controller->players(), this);
 	connect(m_PlayerModel, &PlayerModel::playerAdded, this, &PlayerWindow::playerAdded);
+	connect(this, &PlayerWindow::accepted, m_controller, &Controller::newLegs);
 	tvPlayer->setModel(m_PlayerModel);
 
 	m_PlayerModel->addPlayer("Hans");

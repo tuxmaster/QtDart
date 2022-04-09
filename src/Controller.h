@@ -18,9 +18,11 @@
 #define FRANK_CONTROLLER_H
 
 #include <QtCore>
+#include <Params.h>
 
 namespace Frank {
 class Player;
+Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_CONTROLLER)
 class Controller : public QObject
 {
 		Q_OBJECT
@@ -30,8 +32,10 @@ class Controller : public QObject
 		QList<Player*>*			players() { return m_player; }
 	public Q_SLOTS:
 		void					newGame();
+		void					newLegs();
 	Q_SIGNALS:
 		void					getPlayers();
+		void					getLegs();
 	private:
 		QList<Player*>*			m_player;
 };

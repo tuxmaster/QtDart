@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	m_controller = new Controller(this);
 	m_playerWindow = new PlayerWindow(m_controller, this);
 	connect(m_controller, &Controller::getPlayers, this, &MainWindow::getPlayers);
-	connect(m_playerWindow, &PlayerWindow::accepted, this, &MainWindow::getPlayersFinished);
+	connect(m_controller, &Controller::getLegs, this, &MainWindow::getLegs);
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -53,8 +53,8 @@ void MainWindow::getPlayers()
 {
 	m_playerWindow->open();
 }
-void MainWindow::getPlayersFinished()
+void MainWindow::getLegs()
 {
-	qCDebug(LOG_CAT_MAINWINDOW) << "Select player done";
+	qCDebug(LOG_CAT_MAINWINDOW)<<"Players are know, now how many legs.";
 }
 }
