@@ -17,6 +17,7 @@
 #include "MainWindow.h"
 #include "Controller.h"
 #include "PlayerWindow.h"
+#include <QtWidgets>
 
 namespace Frank
 {
@@ -56,5 +57,12 @@ void MainWindow::getPlayers()
 void MainWindow::getLegs()
 {
 	qCDebug(LOG_CAT_MAINWINDOW)<<"Players are know, now how many legs.";
+	bool ok;
+	quint8 legs = QInputDialog::getInt(this, tr("How many legs?"), tr("How many legs(rounds) will you play with the %n player(s)?","",m_controller->players()->size()),
+									   3,1,std::numeric_limits<quint8>::max(),1,&ok);
+	if(ok)
+	{
+		qCDebug(LOG_CAT_MAINWINDOW)<<"Start an game for"<<m_controller->players()->size()<<"players, playing"<<legs<<"legs.";
+	}
 }
 }
