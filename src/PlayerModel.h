@@ -30,9 +30,10 @@ class PlayerModel : public QAbstractTableModel
 	public:
 		explicit				PlayerModel(QList<Player *> *data, QObject *parent = nullptr);
 		virtual int				rowCount(const QModelIndex &parent = QModelIndex()) const override;
-		virtual int				columnCount(const QModelIndex &parent) const override { return 2;}
+		virtual int				columnCount(const QModelIndex &parent) const override {Q_UNUSED(parent); return 2;}
 		virtual QVariant		data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 		void					addPlayer(const QString &name);
+		void					deletePlayer(const QModelIndex &index);
 	Q_SIGNALS:
 		void					playerAdded();
 	private:

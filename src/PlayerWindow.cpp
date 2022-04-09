@@ -76,6 +76,7 @@ void PlayerWindow::on_tvPlayer_clicked(const QModelIndex &index)
 	if(index.column()==0)
 	{
 		qCDebug(LOG_CAT_PLAYERWINDOW)<<"Player in row"<<index.row()<<"with name"<<m_PlayerModel->data(m_PlayerModel->index(index.row(),1))<<"will removed";
+		m_PlayerModel->deletePlayer(index);
 	}
 }
 } // namespace Frank

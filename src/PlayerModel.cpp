@@ -73,8 +73,17 @@ void PlayerModel::addPlayer(const QString &name)
 		beginInsertRows(index(m_data->size(),0),m_data->size()+1, m_data->size() +1);
 		m_data->append(new Player(name, this));
 		endInsertRows();
+		Q_EMIT(dataChanged(index(m_data->size(),0), index(m_data->size(),1)));
 		Q_EMIT(playerAdded());
 	}
+}
+void PlayerModel::deletePlayer(const QModelIndex &index)
+{
+	qCDebug(LOG_CAT_PLAYERMODEL)<<"Delete player"<<index.row()<<"with name"<<m_data->at(index.row())->getName();
+	beginRemoveRows(index,index.row(), index.row());
+	m_data->takeAt(index.row())->deleteLater();
+	endRemoveRows();
+	Q_EMIT(dataChanged(PlayerModel::index(index.row(),0),PlayerModel::index(m_data->size()+1,1)));
 }
 QIcon PlayerModel::iconDelete = QIcon();
 } // namespace Frank
