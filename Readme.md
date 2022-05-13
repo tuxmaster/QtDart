@@ -6,7 +6,7 @@
 3. mock -r \<chroot\> \<path to the SRPM file\> --with git
 ## Generic build
 ### Hint for win64 cross compile on Fedora
-1. dnf install mingw64-gcc-c++
+1. dnf install mingw64-qt6-qtbase
 2. add the option -DCMAKE_TOOLCHAIN_FILE=/usr/share/mingw/toolchain-mingw64.cmake to the first cmake call
 The Qt6 part are only working on Fedora >35
 ### build the app
