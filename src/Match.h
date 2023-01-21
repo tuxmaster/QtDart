@@ -20,10 +20,13 @@
 #include <QtCore>
 #include "Params.h"
 
+
 namespace Frank
 {
 class Leg;
 class Player;
+class Type;
+
 Q_DECLARE_LOGGING_CATEGORY(LOG_CAT_MATCH)
 class Match: public QObject
 {
@@ -31,8 +34,10 @@ class Match: public QObject
 	public:
 		explicit			Match(QObject *parent = nullptr);
 		explicit			Match(const quint8 &legs, QObject *parent = nullptr);
+		explicit			Match(const quint8 &legs, const Type *type, QObject *parent = nullptr);
 		const QDateTime&	getStart() const {return m_start; }
 		const QDateTime&	getEnd() const { return m_end; }
+		const Type*			getType() const { return m_type; }
 	public Q_SLOTS:
 		void				start();
 		void				end();
@@ -41,6 +46,7 @@ class Match: public QObject
 		QList<Player*>*		m_players;
 		QDateTime			m_start;
 		QDateTime			m_end;
+		const Type*			m_type;
 };
 } // namespace Frank
 

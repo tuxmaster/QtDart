@@ -31,7 +31,7 @@ class Controller : public QObject
 		explicit				Controller(QObject *parent = nullptr);
 								~Controller();
 		QList<Player*>*			players() { return m_players; }
-		void					newMatch();
+		void					newMatch(const quint8 &legs);
 		Match*					currentMatch();
 	public Q_SLOTS:
 		void					newGame();

@@ -69,6 +69,7 @@ set(CPP_HEADER
     src/Player.h
     src/PlayerModel.h
     src/PlayerWindow.h
+    src/Type.h
 )
 set(CPP_SOURCES
     src/Controller.cpp
@@ -79,6 +80,7 @@ set(CPP_SOURCES
     src/Player.cpp
     src/PlayerModel.cpp
     src/PlayerWindow.cpp
+    src/Type.cpp
 )
 set(TS_FILES
     i18n/QtDart_de_DE.ts
@@ -107,6 +109,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message(STATUS "Install .dekstop file to ${DESKTOP_PATH}")
     message(STATUS "Install dekstop icon file to ${DESKTOP_ICON_PATH}")
 endif()
+
+# No Qt keywords
+add_compile_definitions(QT_NO_KEYWORDS)
 
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} )
 qt_add_lupdate(${PROJECT_NAME} TS_FILES ${TS_FILES})

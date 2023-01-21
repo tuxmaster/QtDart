@@ -48,9 +48,9 @@ void Controller::newLegs()
 	else
 		qCDebug(LOG_CAT_CONTROLLER)<<"Player list is empty, stopping here";
 }
-void Controller::newMatch()
+void Controller::newMatch(const quint8 &legs)
 {
-	m_matches->append(new Match(this));
+	m_matches->append(new Match(legs, this));
 	m_matches->last()->start();
 }
 Match* Controller::currentMatch()

@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2022 Frank Büttner tuxmaster@users.noreply.github.com
+	Copyright (C) 2019 Frank Büttner tuxmaster@users.noreply.github.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -14,31 +14,15 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
-#include "Match.h"
-#include "Leg.h"
+#ifndef TYPE_H
+#define TYPE_H
 
+#include <QtCore>
 namespace Frank {
-Q_LOGGING_CATEGORY(LOG_CAT_MATCH, LOG_CAT_MATCH_TEXT)
-Match::Match(QObject *parent):QObject(parent)
+class Type
 {
+	public:
+		Type();
+};
 }
-Match::Match(const quint8 &legs, QObject *parent):QObject(parent)
-{
-	for(quint8 l=0;l<legs;l++)
-		m_legs->append(new Leg(this));
-}
-Match::Match(const quint8 &legs, const Type *type, QObject *parent)
-{
-	Match(legs, parent);
-	m_type=type;
-}
-void Match::start()
-{
-	m_start = QDateTime::currentDateTimeUtc();
-	qCDebug(LOG_CAT_MATCH)<<"stated at"<<m_start;
-}
-void Match::end()
-{
-	m_end = QDateTime::currentDateTimeUtc();
-}
-} // namespace Frank
+#endif // TYPE_H
