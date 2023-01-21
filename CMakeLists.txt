@@ -6,7 +6,11 @@ message(DEBUG "my version line:${version_line}")
 string(REGEX MATCH "[0-9]+.[0-9]+.[0-9]+" version ${version_line})
 message(DEBUG "my version:${version}")
 
-project(QtDart VERSION ${version} LANGUAGES CXX)
+project(QtDart
+    VERSION ${version}
+    LANGUAGES CXX
+    HOMEPAGE_URL "https://github.com/tuxmaster/QtDart"
+)
 message(STATUS "Creating makefile for ${PROJECT_NAME} ${PROJECT_VERSION}")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -57,14 +61,14 @@ configure_file("${PROJECT_NAME}.desktop.in" "${PROJECT_NAME}.desktop")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(UI_PATH ui)
-set (CPP_HEADER
-	src/Controller.h
-	src/Leg.h
-	src/MainWindow.h
-	src/Match.h
-	src/Player.h
-	src/PlayerModel.h
-	src/PlayerWindow.h
+set(CPP_HEADER
+    src/Controller.h
+    src/Leg.h
+    src/MainWindow.h
+    src/Match.h
+    src/Player.h
+    src/PlayerModel.h
+    src/PlayerWindow.h
 )
 set(CPP_SOURCES
     src/Controller.cpp
